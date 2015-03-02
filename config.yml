@@ -1,0 +1,12 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 9090
+  adminConnectors:
+    - type: http
+      port: 9091
+services:
+  - name: Swagger Demo
+    apidoc: http://petstore.swagger.io/v2/swagger.json
+  - name: File Store
+    apidoc: http://localhost:8181/api-doc/swagger.json

@@ -42,10 +42,20 @@
 		  });
 		  window.swaggerUi.load();
 		}
+		function loadAvailableServices() {
+			jQuery.ajax({url:"api/documented-services", dataType:"json"})
+				  .done(function(data) {
+					  var options = $("#select_baseUrl");
+					  $.each(data, function() {
+					      options.append($("<option />").val(this.apidoc).text(this.name));
+					  });
+					  loadSelectedApi();
+			  	  });
+		}
 	  $('#select_baseUrl').change(function() {
         loadSelectedApi();
       });
-	  loadSelectedApi();
+	  loadAvailableServices();
   });
   </script>
 </head>
@@ -56,10 +66,7 @@
     <a id="logo" href="http://swagger.io">API Documentation</a>
     <form id='api_selector'>
       <div class='input'>
-		<select id="select_baseUrl" name="baseUrl">
-			<option value="http://petstore.swagger.wordnik.com/v2/swagger.json">Swagger Pet Store</option>
-			<option value="http://localhost:8181/api-doc/swagger.json">File Store</option>
-		</select>
+		<select id="select_baseUrl" name="baseUrl"></select>
 	  </div>
     </form>
   </div>
