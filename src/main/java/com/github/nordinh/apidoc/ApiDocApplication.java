@@ -31,7 +31,6 @@ public class ApiDocApplication extends Application<ApiDocConfiguration> {
 		final HttpClient httpClient = new HttpClientBuilder(environment)
 				.using(configuration.getHttpClientConfiguration())
 				.build("swagger");
-		environment.jersey().setUrlPattern("/api/*");
 		environment.jersey().register(
 				new DocumentedServices(configuration.getServices(), httpClient));
 	}

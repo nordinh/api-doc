@@ -5,6 +5,7 @@ server:
   adminConnectors:
     - type: http
       port: 9091
+  rootPath: '/api/*'
 services:
   - name: Swagger Demo
     apidoc: http://petstore.swagger.io/v2/swagger.json
